@@ -1,0 +1,1021 @@
+[
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "DepositAtLeastOneAsset",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InsufficientApproval",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InsufficientBalance",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidRedeemMethod",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotEnoughAssetsInThePool",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "RedeemAtLeastOneAsset",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "RedeemMoreThanMaxAmount",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "TransferFailed",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "requestId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "assetContract",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "depositer",
+            "type": "address"
+          },
+          {
+            "internalType": "enum IAssetPoolV1.AssetType",
+            "name": "assetType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "numberOfCards",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amountOrTokenId",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct IAssetPoolV1.AssetBox",
+        "name": "assetBox",
+        "type": "tuple"
+      }
+    ],
+    "name": "AssetRedeemed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "admin",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address[]",
+        "name": "erc20ContractAddresses",
+        "type": "address[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "depositer",
+            "type": "address"
+          },
+          {
+            "internalType": "enum IAssetPoolV1.AssetType",
+            "name": "assetType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "numberOfCards",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amountOrTokenId",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct IAssetPoolV1.AssetBox[][]",
+        "name": "erc20Boxes",
+        "type": "tuple[][]"
+      },
+      {
+        "indexed": false,
+        "internalType": "address[]",
+        "name": "erc721ContractAddresses",
+        "type": "address[]"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256[][]",
+        "name": "erc721TokenIds",
+        "type": "uint256[][]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "depositer",
+            "type": "address"
+          },
+          {
+            "internalType": "enum IAssetPoolV1.AssetType",
+            "name": "assetType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "numberOfCards",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amountOrTokenId",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct IAssetPoolV1.AssetBox[]",
+        "name": "nativeTokenBoxes",
+        "type": "tuple[]"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "numberOfDepositedAssets",
+        "type": "uint256"
+      }
+    ],
+    "name": "AssetsDeposited",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "admin",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address[]",
+        "name": "erc20ContractAddresses",
+        "type": "address[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "depositer",
+            "type": "address"
+          },
+          {
+            "internalType": "enum IAssetPoolV1.AssetType",
+            "name": "assetType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "numberOfCards",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amountOrTokenId",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct IAssetPoolV1.AssetBox[][]",
+        "name": "erc20Boxes",
+        "type": "tuple[][]"
+      },
+      {
+        "indexed": false,
+        "internalType": "address[]",
+        "name": "erc721ContractAddresses",
+        "type": "address[]"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256[][]",
+        "name": "erc721TokenIds",
+        "type": "uint256[][]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "depositer",
+            "type": "address"
+          },
+          {
+            "internalType": "enum IAssetPoolV1.AssetType",
+            "name": "assetType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "numberOfCards",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amountOrTokenId",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct IAssetPoolV1.AssetBox[]",
+        "name": "nativeTokenBoxes",
+        "type": "tuple[]"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "numberOfWithdrawnAssets",
+        "type": "uint256"
+      }
+    ],
+    "name": "AssetsWithdrawn",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "version",
+        "type": "uint8"
+      }
+    ],
+    "name": "Initialized",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "RedeemTokenAmountChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "transferrer",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "RedeemTokenTransferred",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "AMOUNT_OF_ASSET_TYPES",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_REDEEM_TOKEN_AMOUNT",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "_erc20ContractAddresses",
+        "type": "address[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "depositer",
+            "type": "address"
+          },
+          {
+            "internalType": "enum IAssetPoolV1.AssetType",
+            "name": "assetType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "numberOfCards",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amountOrTokenId",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct IAssetPoolV1.AssetBox[][]",
+        "name": "_erc20Boxes",
+        "type": "tuple[][]"
+      },
+      {
+        "internalType": "address[]",
+        "name": "_erc721ContractAddresses",
+        "type": "address[]"
+      },
+      {
+        "internalType": "uint256[][]",
+        "name": "_erc721TokenIds",
+        "type": "uint256[][]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "depositer",
+            "type": "address"
+          },
+          {
+            "internalType": "enum IAssetPoolV1.AssetType",
+            "name": "assetType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "numberOfCards",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amountOrTokenId",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct IAssetPoolV1.AssetBox[]",
+        "name": "_nativeTokenBoxes",
+        "type": "tuple[]"
+      }
+    ],
+    "name": "depositAssets",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "requestId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "words",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "fulfillRedeemAsset",
+    "outputs": [
+      {
+        "internalType": "enum IAssetPoolV1.AssetType",
+        "name": "",
+        "type": "uint8"
+      },
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "enum IAssetPoolV1.AssetType",
+        "name": "assetType",
+        "type": "uint8"
+      }
+    ],
+    "name": "getContractsByAssetType",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getDepositedAssetTypes",
+    "outputs": [
+      {
+        "internalType": "enum IAssetPoolV1.AssetType[]",
+        "name": "",
+        "type": "uint8[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "erc20Contract",
+        "type": "address"
+      }
+    ],
+    "name": "getERC20Assets",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "depositer",
+            "type": "address"
+          },
+          {
+            "internalType": "enum IAssetPoolV1.AssetType",
+            "name": "assetType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "numberOfCards",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amountOrTokenId",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct IAssetPoolV1.AssetBox[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "erc721Contract",
+        "type": "address"
+      }
+    ],
+    "name": "getERC721Assets",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "depositer",
+            "type": "address"
+          },
+          {
+            "internalType": "enum IAssetPoolV1.AssetType",
+            "name": "assetType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "numberOfCards",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amountOrTokenId",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct IAssetPoolV1.AssetBox[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getNativeTokenAssets",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "depositer",
+            "type": "address"
+          },
+          {
+            "internalType": "enum IAssetPoolV1.AssetType",
+            "name": "assetType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "numberOfCards",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amountOrTokenId",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct IAssetPoolV1.AssetBox[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getRedeemTokenAmount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getRewardPool",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getTotalNumberOfAssets",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getTrustedForwarder",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "forwarder",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "id",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "rewardPool_",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "id_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "redeemTokenAmount_",
+        "type": "uint256"
+      }
+    ],
+    "name": "initialize",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "forwarder",
+        "type": "address"
+      }
+    ],
+    "name": "isTrustedForwarder",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "operator",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "ids",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "values",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "bytes",
+        "name": "data",
+        "type": "bytes"
+      }
+    ],
+    "name": "onERC1155BatchReceived",
+    "outputs": [
+      {
+        "internalType": "bytes4",
+        "name": "",
+        "type": "bytes4"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "operator",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes",
+        "name": "",
+        "type": "bytes"
+      }
+    ],
+    "name": "onERC1155Received",
+    "outputs": [
+      {
+        "internalType": "bytes4",
+        "name": "",
+        "type": "bytes4"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes",
+        "name": "",
+        "type": "bytes"
+      }
+    ],
+    "name": "onERC721Received",
+    "outputs": [
+      {
+        "internalType": "bytes4",
+        "name": "",
+        "type": "bytes4"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "amountOfAssetsToRedeem",
+        "type": "uint256"
+      }
+    ],
+    "name": "redeemAsset",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "setRedeemTokenAmount",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes4",
+        "name": "interfaceId",
+        "type": "bytes4"
+      }
+    ],
+    "name": "supportsInterface",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "transferRedeemTokenAmount",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "number",
+        "type": "uint256"
+      }
+    ],
+    "name": "transferRedeemTokenNumber",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "erc20ContractAddresses",
+        "type": "address[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "depositer",
+            "type": "address"
+          },
+          {
+            "internalType": "enum IAssetPoolV1.AssetType",
+            "name": "assetType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "numberOfCards",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amountOrTokenId",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct IAssetPoolV1.AssetBox[][]",
+        "name": "erc20Boxes",
+        "type": "tuple[][]"
+      },
+      {
+        "internalType": "address[]",
+        "name": "erc721ContractAddresses",
+        "type": "address[]"
+      },
+      {
+        "internalType": "uint256[][]",
+        "name": "erc721TokenIds",
+        "type": "uint256[][]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "depositer",
+            "type": "address"
+          },
+          {
+            "internalType": "enum IAssetPoolV1.AssetType",
+            "name": "assetType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "numberOfCards",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amountOrTokenId",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct IAssetPoolV1.AssetBox[]",
+        "name": "nativeTokenBoxes",
+        "type": "tuple[]"
+      }
+    ],
+    "name": "withdrawAssets",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "stateMutability": "payable",
+    "type": "receive"
+  }
+]

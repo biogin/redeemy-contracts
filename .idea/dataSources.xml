@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="redeemy-backend@rc1b-49925130t1dkqc3n.mdb.yandexcloud.net" uuid="915f2c2f-690f-458e-b884-06acfe8d3a76">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://rc1b-49925130t1dkqc3n.mdb.yandexcloud.net:6432/redeemy-backend</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="redeemy-backend-testnet@rc1b-49925130t1dkqc3n.mdb.yandexcloud.net" uuid="2bd85bba-fe96-4053-a3e1-34b4571fa8dd">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://rc1b-49925130t1dkqc3n.mdb.yandexcloud.net:6432/redeemy-backend-testnet</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="redeemy-indexer-mumbai@rc1b-49925130t1dkqc3n.mdb.yandexcloud.net" uuid="8cf8b771-3413-4621-b119-6fb9d3c19249">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://rc1b-49925130t1dkqc3n.mdb.yandexcloud.net:6432/redeemy-indexer-mumbai</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>
